@@ -3,6 +3,7 @@ const Lotto = require("./Lotto");
 
 class App {
   play() {
+    this.inputMyNumbers();
     this.createLotto();
   }
 
@@ -14,7 +15,13 @@ class App {
   printLotto(numbers) {
     numbers.sort((a, b) => { return a - b });
     MissionUtils.Console.print(`[${numbers.join(", ")}]`);
-    console.log(`[${numbers.join(", ")}]`);
+  }
+
+  inputMyNumbers() {
+    MissionUtils.Console.readLine("", (answer) => {
+      if (answer % 1000 !== 0)
+        throw new Error("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+    });
   }
 }
 
